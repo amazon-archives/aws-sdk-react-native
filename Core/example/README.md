@@ -1,13 +1,14 @@
-To setup the sample project for cognito identity using react native, use the following instructions: 
+### Introduction
+This sample demonstrates the use of the Cognito Identity to authenticate using Facebook.
 
-Both iOS and Android:
-- Create a Facebook application on developers.Facebook.com
-- go to https://console.aws.amazon.com/ and go to cognito —> manage federated identities and create your own identity pool and allow for unauthenticated and authenticated identities. Add Facebook as an option for this identity pool
-- Go to example —> app —> index.js and fix line 145 with your identity pool and region info: CognitoAWSCredentials.initWithOptions(….)
+### Configuration
+1. Create a [Facebook application](https://developers.facebook.com/).
+2. Create a [federated Cognito Identity pool](https://console.aws.amazon.com/cognito/federated/?region=us-east-1) that permits both Authenticated and Unauthenticated access. 
+3. Add Facebook as an option and fill in the required information.
+4. Update [app/index.js](https://github.com/awslabs/aws-sdk-react-native/blob/master/Core/example/app/index.js) with the identity pool ID and the region.
+  1. ```region``` (line #59) is the region where the identity pool was created e.g. us-east-1
+  2. ```identity_pool_id``` (line #60) is the unique ID for the identity pool.
+5. Add the Facebook application ID to the [Xcode project plist](https://github.com/awslabs/aws-sdk-react-native/blob/master/Core/example/ios/example/Info.plist#L26). There are two spots: line #26 and line #33.
+6. Add the Facebook application ID to [the Android app](https://github.com/awslabs/aws-sdk-react-native/blob/master/Core/example/android/app/src/main/res/values/strings.xml#L3).
 
-iOS Project
-- Go to example —> info.plist —> open as —> source code and change BOTH instances of INSERTFACEBOOKAPPID to your appID
-
-Android Project
-- Go to app —> res —> values —> strings.xml and change the INSERTFACEBOOKAPPID to your appID
-
+### Run the Sample
