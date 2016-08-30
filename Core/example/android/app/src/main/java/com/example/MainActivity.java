@@ -16,7 +16,7 @@ package com.example;
 
 import android.content.Intent;
 
-import com.amazonaws.reactnative.core.CorePackage;
+import com.amazonaws.reactnative.core.AWSRNCorePackage;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.react.ReactActivity;
@@ -65,7 +65,7 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
                 new MainReactPackage(),
                 new FBSDKPackage(mCallbackManager),
-                new CorePackage()
+                new AWSRNCorePackage()
         );
     }
 }
