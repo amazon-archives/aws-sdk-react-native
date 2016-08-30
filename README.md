@@ -15,7 +15,7 @@ Contributions are welcome! Please report issues using the [Github issue tracker]
 ### Set Up your Environment
 
 1. Install Xcode, Android Studio, and other dependencies based on the [React Native Getting Started](https://facebook.github.io/react-native/docs/getting-started.html#content) guide.
-2. Check out the [SDK source code](https://github.com/aws/aws-sdk-react-native).
+2. Check out the [SDK source code](https://github.com/awslabs/aws-sdk-react-native).
 
 ### Build the SDK
 1. Run ```npm install``` for Core.
