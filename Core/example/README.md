@@ -12,7 +12,6 @@ This sample demonstrates the use of the Cognito Identity to authenticate using F
 6. Add the Facebook application ID to [the Android app](https://github.com/awslabs/aws-sdk-react-native/blob/master/Core/example/android/app/src/main/res/values/strings.xml#L3).
 
 ### Run the Sample
-### Running the Application
 First, ensure that Core has been built into an npm package using ```npm pack```.
 ```
 npm install
