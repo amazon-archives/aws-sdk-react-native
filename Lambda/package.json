@@ -1,0 +1,29 @@
+{
+  "name": "aws-sdk-react-native-lambda",
+  "version": "0.0.1",
+  "description": "A React Native wrapper for AWS SDK for Lambda.",
+  "main": "./src/index.js",
+  "files": [
+    "android/",
+    "ios/",
+    "src/"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/awslabs/aws-sdk-react-native.git"
+  },
+  "keywords": [
+    "aws",
+    "aws mobile",
+    "react-native",
+    "react",
+    "native",
+    "lambda",
+    "serverless"
+  ],
+  "author": "Amazon Web Services",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "aws-sdk-react-native-core": "../Core/aws-sdk-react-native-core-0.0.1.tgz"
+  }
+}

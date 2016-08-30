@@ -1,0 +1,4 @@
+include ':aws-sdk-react-native-lambda'
+project(':aws-sdk-react-native-lambda').projectDir = new File(rootProject.projectDir, '../node_modules/aws-sdk-react-native-lambda/android')
+include ':aws-sdk-react-native-core'
+project(':aws-sdk-react-native-core').projectDir = new File(rootProject.projectDir, '../node_modules/aws-sdk-react-native-core/android')

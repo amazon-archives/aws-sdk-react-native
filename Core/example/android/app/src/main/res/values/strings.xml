@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">example</string>
+    <string name="facebook_app_id">INSERTFACEBOOKAPPID</string>
+</resources>

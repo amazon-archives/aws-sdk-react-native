@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EBB7A8871D2DC6AC00BE4E73 /* AWSRNLambdaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB7A8841D2DC6AC00BE4E73 /* AWSRNLambdaClient.m */; };
+		FB68C8161D74F7D20029D729 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB68C8141D74F7D20029D729 /* AWSCore.framework */; };
+		FB68C8171D74F7D20029D729 /* AWSLambda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB68C8151D74F7D20029D729 /* AWSLambda.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB291AF11D19C0EE00BA702F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EB291AF31D19C0EE00BA702F /* libLambda.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLambda.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB7A8831D2DC6AC00BE4E73 /* AWSRNLambdaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSRNLambdaClient.h; sourceTree = "<group>"; };
+		EBB7A8841D2DC6AC00BE4E73 /* AWSRNLambdaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSRNLambdaClient.m; sourceTree = "<group>"; };
+		FB68C8141D74F7D20029D729 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = Framework/AWSCore.framework; sourceTree = "<group>"; };
+		FB68C8151D74F7D20029D729 /* AWSLambda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSLambda.framework; path = Framework/AWSLambda.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB291AF01D19C0EE00BA702F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB68C8161D74F7D20029D729 /* AWSCore.framework in Frameworks */,
+				FB68C8171D74F7D20029D729 /* AWSLambda.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB291AEA1D19C0EE00BA702F = {
+			isa = PBXGroup;
+			children = (
+				EB291B051D19C10900BA702F /* Frameworks */,
+				EB291AF51D19C0EE00BA702F /* Lambda */,
+				EB291AF41D19C0EE00BA702F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB291AF41D19C0EE00BA702F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB291AF31D19C0EE00BA702F /* libLambda.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB291AF51D19C0EE00BA702F /* Lambda */ = {
+			isa = PBXGroup;
+			children = (
+				EBB7A8831D2DC6AC00BE4E73 /* AWSRNLambdaClient.h */,
+				EBB7A8841D2DC6AC00BE4E73 /* AWSRNLambdaClient.m */,
+			);
+			path = Lambda;
+			sourceTree = "<group>";
+		};
+		EB291B051D19C10900BA702F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB68C8141D74F7D20029D729 /* AWSCore.framework */,
+				FB68C8151D74F7D20029D729 /* AWSLambda.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB291AF21D19C0EE00BA702F /* Lambda */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB291AFC1D19C0EE00BA702F /* Build configuration list for PBXNativeTarget "Lambda" */;
+			buildPhases = (
+				EB291AEF1D19C0EE00BA702F /* Sources */,
+				EB291AF01D19C0EE00BA702F /* Frameworks */,
+				EB291AF11D19C0EE00BA702F /* CopyFiles */,
+				EBAFBD491D19DACD00CCF1C4 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lambda;
+			productName = Lambda;
+			productReference = EB291AF31D19C0EE00BA702F /* libLambda.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB291AEB1D19C0EE00BA702F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Amazon Web Services";
+				TargetAttributes = {
+					EB291AF21D19C0EE00BA702F = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = EB291AEE1D19C0EE00BA702F /* Build configuration list for PBXProject "Lambda" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EB291AEA1D19C0EE00BA702F;
+			productRefGroup = EB291AF41D19C0EE00BA702F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB291AF21D19C0EE00BA702F /* Lambda */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EBAFBD491D19DACD00CCF1C4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"Frameworks/AWSCore.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB291AEF1D19C0EE00BA702F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB7A8871D2DC6AC00BE4E73 /* AWSRNLambdaClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EB291AFA1D19C0EE00BA702F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../../../../../../react-native/React/** ../../../../../../react-native/React/Base/** ../node_modules/**";
+			};
+			name = Debug;
+		};
+		EB291AFB1D19C0EE00BA702F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "../../../../../../react-native/React/** ../../../../../../react-native/React/Base/** ../node_modules/**";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB291AFD1D19C0EE00BA702F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Framework",
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../react-native/React/**",
+					"../../aws-sdk-react-native-core/ios/**",
+					"../node_modules/react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EB291AFE1D19C0EE00BA702F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Framework",
+				);
+				HEADER_SEARCH_PATHS = (
+					"../../react-native/React/**",
+					"../../aws-sdk-react-native-core/ios/**",
+					"../node_modules/react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB291AEE1D19C0EE00BA702F /* Build configuration list for PBXProject "Lambda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB291AFA1D19C0EE00BA702F /* Debug */,
+				EB291AFB1D19C0EE00BA702F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB291AFC1D19C0EE00BA702F /* Build configuration list for PBXNativeTarget "Lambda" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB291AFD1D19C0EE00BA702F /* Debug */,
+				EB291AFE1D19C0EE00BA702F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB291AEB1D19C0EE00BA702F /* Project object */;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "example",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "aws-sdk-react-native-core": "../aws-sdk-react-native-core-0.0.1.tgz",
+    "react": "^15.0.2",
+    "react-native": "^0.26.2",
+    "react-native-fbsdk": "^0.2.1"
+  }
+}

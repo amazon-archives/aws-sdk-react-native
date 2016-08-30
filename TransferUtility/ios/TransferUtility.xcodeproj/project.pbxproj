@@ -1,0 +1,300 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB244AB61D11B9840053A632 /* AWSRNS3TransferUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = EB244AB51D11B9840053A632 /* AWSRNS3TransferUtility.m */; };
+		FB4EBEE61D751E7800CB7C14 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4EBEE41D751E7800CB7C14 /* AWSCore.framework */; };
+		FB4EBEE71D751E7800CB7C14 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB4EBEE51D751E7800CB7C14 /* AWSS3.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EB244AA61D11B91F0053A632 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		EB244AA81D11B91F0053A632 /* libTransferUtility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTransferUtility.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB244AB41D11B9840053A632 /* AWSRNS3TransferUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSRNS3TransferUtility.h; sourceTree = "<group>"; };
+		EB244AB51D11B9840053A632 /* AWSRNS3TransferUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSRNS3TransferUtility.m; sourceTree = "<group>"; };
+		FB4EBEE41D751E7800CB7C14 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = Frameworks/AWSCore.framework; sourceTree = "<group>"; };
+		FB4EBEE51D751E7800CB7C14 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Frameworks/AWSS3.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB244AA51D11B91F0053A632 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB4EBEE71D751E7800CB7C14 /* AWSS3.framework in Frameworks */,
+				FB4EBEE61D751E7800CB7C14 /* AWSCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB244A9F1D11B91F0053A632 = {
+			isa = PBXGroup;
+			children = (
+				EB244AB71D11B9EB0053A632 /* Framework */,
+				EB244AAA1D11B91F0053A632 /* AWSTransferUtility */,
+				EB244AA91D11B91F0053A632 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB244AA91D11B91F0053A632 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB244AA81D11B91F0053A632 /* libTransferUtility.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB244AAA1D11B91F0053A632 /* AWSTransferUtility */ = {
+			isa = PBXGroup;
+			children = (
+				EB244AB41D11B9840053A632 /* AWSRNS3TransferUtility.h */,
+				EB244AB51D11B9840053A632 /* AWSRNS3TransferUtility.m */,
+			);
+			path = AWSTransferUtility;
+			sourceTree = "<group>";
+		};
+		EB244AB71D11B9EB0053A632 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				FB4EBEE41D751E7800CB7C14 /* AWSCore.framework */,
+				FB4EBEE51D751E7800CB7C14 /* AWSS3.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB244AA71D11B91F0053A632 /* TransferUtility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB244AB11D11B91F0053A632 /* Build configuration list for PBXNativeTarget "TransferUtility" */;
+			buildPhases = (
+				EB244AA41D11B91F0053A632 /* Sources */,
+				EB244AA51D11B91F0053A632 /* Frameworks */,
+				EB244AA61D11B91F0053A632 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TransferUtility;
+			productName = AWSTransferUtility;
+			productReference = EB244AA81D11B91F0053A632 /* libTransferUtility.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB244AA01D11B91F0053A632 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Amazon Web Services";
+				TargetAttributes = {
+					EB244AA71D11B91F0053A632 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = EB244AA31D11B91F0053A632 /* Build configuration list for PBXProject "TransferUtility" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EB244A9F1D11B91F0053A632;
+			productRefGroup = EB244AA91D11B91F0053A632 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB244AA71D11B91F0053A632 /* TransferUtility */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB244AA41D11B91F0053A632 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB244AB61D11B9840053A632 /* AWSRNS3TransferUtility.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EB244AAF1D11B91F0053A632 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../../../../../react-native/React/**",
+					"../node_modules/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EB244AB01D11B91F0053A632 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"../../../../../../react-native/React/**",
+					"../node_modules/**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB244AB21D11B91F0053A632 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework/**",
+					"$(PROJECT_DIR)/Framework",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"../node_modules/**",
+					"../../../../../../react-native/React/Base/**",
+					"../../../../../../react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = TransferUtility;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EB244AB31D11B91F0053A632 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Framework/**",
+					"$(PROJECT_DIR)/Framework",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = (
+					"../node_modules/**",
+					"../../../../../../react-native/React/Base/**",
+					"../../../../../../react-native/React/**",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = TransferUtility;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB244AA31D11B91F0053A632 /* Build configuration list for PBXProject "TransferUtility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB244AAF1D11B91F0053A632 /* Debug */,
+				EB244AB01D11B91F0053A632 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB244AB11D11B91F0053A632 /* Build configuration list for PBXNativeTarget "TransferUtility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB244AB21D11B91F0053A632 /* Debug */,
+				EB244AB31D11B91F0053A632 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB244AA01D11B91F0053A632 /* Project object */;
+}

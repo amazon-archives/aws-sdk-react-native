@@ -1,5 +1,12 @@
+gradle.properties
+gradle-wrapper.properties
+*.jar
+gradlew
+gradlew.bat
+keystores
 .DS_Store
 build/
+xcshareddata
 *.pbxuser
 !default.pbxuser
 *.mode1v3
