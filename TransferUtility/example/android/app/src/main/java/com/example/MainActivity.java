@@ -19,8 +19,8 @@ import com.facebook.react.ReactActivity;
 import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
-import com.amazonaws.reactnative.core.CorePackage;
-import com.amazonaws.reactnative.s3.S3Package;
+import com.amazonaws.reactnative.core.AWSRNCorePackage;
+import com.amazonaws.reactnative.s3.AWSRNS3Package;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,8 +53,8 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new CorePackage(),
-            new S3Package(),
+            new AWSRNCorePackage(),
+            new AWSRNS3Package(),
             new ImagePickerPackage()
         );
     }
