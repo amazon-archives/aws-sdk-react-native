@@ -14,7 +14,7 @@ This sample demonstrates the use of the TransferUtility to upload and download f
   5. `DownloadKeyName` is the name of the large file stored in the bucket e.g. video.mp4
   6. `UploadKeyName` is the name of an image that will be uploaded to S3. Use "jpg" as the suffix e.g. picture.jpg.
 
-### Running the Application
+### Run the Sample
 First, ensure that Core has been built into an npm package using ```npm pack```.
 ```
 npm install
