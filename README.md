@@ -10,8 +10,7 @@ We’re excited to offer a developer preview of the AWS SDK for React Native. Th
 The SDK core uses [Amazon Cognito Identity](https://aws.amazon.com/cognito/) as the authentication provider to comply with best practices for mobile app development.
 
 ### Contributions
-Contributions are welcome! Please report issues using the Github issue tracker. To contribute, submit a pull request to the GitHub repository with a description of your issue or suggested change. If this is a bug fix, please reference the issue and include steps to reproduce it.
-
+Contributions are welcome! Please report issues using the [Github issue tracker](https://github.com/awslabs/aws-sdk-react-native/issues). To contribute, [submit a pull request](https://github.com/awslabs/aws-sdk-react-native/pulls) to the GitHub repository with a description of your issue or suggested change. If this is a bug fix, please reference the issue and include steps to reproduce it.
 
 ##Setting Up
 
