@@ -20,7 +20,7 @@ import com.imagepicker.ImagePickerPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.amazonaws.reactnative.core.AWSRNCorePackage;
-import com.amazonaws.reactnative.s3.AWSRNS3Package;
+import com.amazonaws.reactnative.s3.AWSRNS3TransferUtilityPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -54,7 +54,7 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new AWSRNCorePackage(),
-            new AWSRNS3Package(),
+            new AWSRNS3TransferUtilityPackage(),
             new ImagePickerPackage()
         );
     }
