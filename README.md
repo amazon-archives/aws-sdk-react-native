@@ -124,7 +124,7 @@ Note: If you change the tests, please run “react-native run-android” to relo
 
 ##Talk to Us
 
-Visit our GitHub [Issues](https://github.com/aws/aws-sdk-react-native/issues) to leave feedback and to connect with other users of the SDK.
+Visit our GitHub [Issues](https://github.com/awslabs/aws-sdk-react-native/issues) to leave feedback and to connect with other users of the SDK.
 
 ##Author
 
