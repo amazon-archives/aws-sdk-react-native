@@ -12,21 +12,10 @@ The SDK core uses [Amazon Cognito Identity](https://aws.amazon.com/cognito/) as 
 ### Contributions
 Contributions are welcome! Please report issues using the [Github issue tracker](https://github.com/awslabs/aws-sdk-react-native/issues). To contribute, [submit a pull request](https://github.com/awslabs/aws-sdk-react-native/pulls) to the GitHub repository with a description of your issue or suggested change. If this is a bug fix, please reference the issue and include steps to reproduce it.
 
-##Setting Up
+### Set Up your Environment
 
-To get started you will need to integrate the SDK into an existing project. You can also run the samples to get a sense of how the SDK works. 
-
-To use the AWS Mobile SDK for React Native, you will need react-native dependencies installed on your development machine:
-
-* Xcode (iOS)
-* Android Studio (Android)
-* node.js
-* React Native command line tools
-* Watchman
-
-For more information on getting started please view [React Native Getting Started](https://facebook.github.io/react-native/docs/getting-started.html#content).
-
-Also, at the AWS GitHub repo, you can check out the [SDK source code](https://github.com/aws/aws-sdk-react-native).
+1. Install Xcode, Android Studio, and other dependencies based on the [React Native Getting Started](https://facebook.github.io/react-native/docs/getting-started.html#content) guide.
+2. Check out the [SDK source code](https://github.com/aws/aws-sdk-react-native).
 
 
 ##Include the SDK in an Existing Application
@@ -134,14 +123,6 @@ Note: If you change the tests, please run “react-native run-android” to relo
 1. open the relevant Xcode project
 1. command+U or Product —> Test will start tests in Xcode. Sometimes the development server can take a while so it can be helpful to run the application normally (by pressing the Run button at the top) and then invoke the tests with either command+U or Product —> Test
 
-##Talk to Us
+### License
 
-Visit our GitHub [Issues](https://github.com/awslabs/aws-sdk-react-native/issues) to leave feedback and to connect with other users of the SDK.
-
-##Author
-
-Amazon Web Services
-
-##License
-
-See the **LICENSE** file for more info.
+The source code is available under the Apache 2.0 license.
