@@ -29,8 +29,8 @@ class example extends React.Component {
       <ReactNative.NavigatorIOS
         style={styles.container}
         initialRoute={{
-          title: 'Transfer Utility',
-					component: TransferUtility,
+       	  title: 'Transfer Utility',
+	  component: TransferUtility,
         }}/>
     );
   }
