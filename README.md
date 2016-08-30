@@ -18,7 +18,7 @@ Contributions are welcome! Please report issues using the [Github issue tracker]
 2. Check out the [SDK source code](https://github.com/awslabs/aws-sdk-react-native).
 
 ### Build the SDK
-1. Run ```npm install``` for Core.
+1. Run ```npm pack``` for Core.
 2. Run ```npm install``` for each service.
 
 #### iOS only
