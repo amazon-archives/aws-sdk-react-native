@@ -17,6 +17,16 @@ Contributions are welcome! Please report issues using the [Github issue tracker]
 1. Install Xcode, Android Studio, and other dependencies based on the [React Native Getting Started](https://facebook.github.io/react-native/docs/getting-started.html#content) guide.
 2. Check out the [SDK source code](https://github.com/aws/aws-sdk-react-native).
 
+### Build the SDK
+1. Run ```npm install``` for Core.
+2. Run ```npm install``` for each service.
+
+#### iOS only
+
+1. Download the [AWS Mobile SDK for iOS](https://aws.amazon.com/mobile/sdk/) and extract the frameworks.
+2. For each service, copy the relevant .framework into the iOS/Frameworks folder.
+3. Build each Xcode project. You may need to adjust the header search path.
+
 ### License
 
 The source code is available under the Apache 2.0 license.
