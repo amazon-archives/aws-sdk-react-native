@@ -9,6 +9,7 @@
     "react": "^15.1.0",
     "react-native": "^0.27.2",
     "react-native-image-picker": "^0.19.3",
-    "aws-sdk-react-native-core": "../../Core/aws-sdk-react-native-core-0.0.1.tgz"
+    "aws-sdk-react-native-core": "../../Core/aws-sdk-react-native-core-0.0.1.tgz",
+    "aws-sdk-react-native-transfer-utility": "../aws-sdk-react-native-transfer-utility-0.0.1.tgz"
   }
 }
