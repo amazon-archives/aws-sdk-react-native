@@ -213,9 +213,9 @@ refreshLogins(){
 initWithOptions(options){
   if (Platform.OS == 'android'){
     if(!options.refreshTime){
-      window.setInterval(this.refreshLogins, 3300000);
+      window.setInterval(this.refreshLogins.bind(this), 3300000);
     }else{
-      window.setInterval(this.refreshLogins, options.refreshTime);
+      window.setInterval(this.refreshLogins.bind(this), options.refreshTime);
     }
   }
   if(!options.identity_pool_id){
