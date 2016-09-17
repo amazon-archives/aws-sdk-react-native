@@ -15,6 +15,8 @@
 
 package com.amazonaws.reactnative.lambda;
 
+import android.os.AsyncTask;
+
 import com.amazonaws.reactnative.core.AWSRNClientConfiguration;
 import com.amazonaws.reactnative.core.AWSRNClientMarshaller;
 import com.amazonaws.reactnative.core.AWSRNCognitoCredentials;
@@ -67,14 +69,56 @@ public class AWSRNLambdaClient extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void Invoke(final ReadableMap options, final Promise promise) {
-        try {
-            final InvokeRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), InvokeRequest.class);
-            final InvokeResult response = lambdaClient.invoke(request);
-            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
-            promise.resolve(map);
-        } catch (Exception e) {
-            promise.reject(e);
-            return;
+        // Execute the invoke on a background thread, but resolve/reject the promise on the UI thread
+        new InvokeTask(lambdaClient, gson, promise).execute(options);
+    }
+
+    private static class InvokeTaskResult {
+        public WritableMap response;
+        public Exception failure;
+    }
+
+    private static class InvokeTask extends AsyncTask<ReadableMap, Void, InvokeTaskResult> {
+        // see https://developer.android.com/reference/android/os/AsyncTask.html
+
+        private final Gson gson;
+        private final AWSLambdaClient lambdaClient;
+        private final Promise promise;
+
+        public InvokeTask(AWSLambdaClient lambdaClient, Gson gson, Promise promise) {
+            this.gson = gson;
+            this.lambdaClient = lambdaClient;
+            this.promise = promise;
+        }
+
+        @Override
+        protected InvokeTaskResult doInBackground(ReadableMap... options) {
+            InvokeTaskResult result = new InvokeTaskResult();
+            try {
+                assert options != null && options.length == 1;
+
+                InvokeRequest request = gson.fromJson(
+                    new JSONObject(AWSRNClientMarshaller.readableMapToMap(options[0])).toString(),
+                    InvokeRequest.class
+                );
+
+                InvokeResult response = lambdaClient.invoke(request);
+                result.response = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            }
+            catch(Exception e) {
+                result.failure = e;
+            }
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(InvokeTaskResult result) {
+            if(result.failure != null) {
+                promise.reject(result.failure);
+            }
+            else {
+                promise.resolve(result.response);
+            }
         }
     }
 
