@@ -63,6 +63,7 @@ public class AWSRNCognitoCredentials extends ReactContextBaseJavaModule {
     private static final String DIGITSPROVIDER = "www.digits.com";
     private CognitoCachingCredentialsProvider credentialsProvider;
 
+    private final BackgroundRunner backgroundRunner = new BackgroundRunner();
 
     public AWSRNCognitoCredentials(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -111,37 +112,51 @@ public class AWSRNCognitoCredentials extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void getIdentityIDAsync(final Promise promise) {
-        try {
-            final String identityId = credentialsProvider.getIdentityId();
-            if (identityId != null) {
-                final WritableMap identityidMap = Arguments.createMap();
-                identityidMap.putString(IDENTITYID, identityId);
-                promise.resolve(identityidMap);
-            }
-        } catch (AmazonServiceException e) {
-            promise.reject(e.getErrorCode(), e.getErrorMessage(), e);
-        } catch (AmazonClientException e) {
-            promise.reject("", e.getMessage(), e);
-        }
+        backgroundRunner.runInBackground(
+            new BackgroundRunner.Supplier<WritableMap>() {
+                @Override
+                public WritableMap get() throws Exception {
+                    final String identityId = credentialsProvider.getIdentityId();
+                    if (identityId != null) {
+                        final WritableMap identityidMap = Arguments.createMap();
+                        identityidMap.putString(IDENTITYID, identityId);
+                        return identityidMap;
+                    }
+                    else {
+                        // TODO: throw exception instead?
+                        return null;
+                    }
+                }
+            },
+            PROMISE_REJECTOR,
+            promise
+        );
     }
 
     @ReactMethod
     public void getCredentialsAsync(final Promise promise) {
-        try {
-            final AWSSessionCredentials cred = credentialsProvider.getCredentials();
-            if (cred != null) {
-                final WritableMap credentials = Arguments.createMap();
-                credentials.putString(ACCESS_KEY, cred.getAWSAccessKeyId());
-                credentials.putString(SESSION_KEY, cred.getSessionToken());
-                credentials.putString(SECRET_KEY, cred.getAWSSecretKey());
-                credentials.putString(EXPIRATION, credentialsProvider.getSessionCredentitalsExpiration().toString());
-                promise.resolve(credentials);
-            }
-        } catch (AmazonServiceException e) {
-            promise.reject(e.getErrorCode(), e.getErrorMessage(), e);
-        } catch (AmazonClientException e) {
-            promise.reject("", e.getMessage(), e);
-        }
+        backgroundRunner.runInBackground(
+            new BackgroundRunner.Supplier<WritableMap>() {
+                @Override
+                public WritableMap get() throws Exception {
+                    final AWSSessionCredentials cred = credentialsProvider.getCredentials();
+                    if (cred != null) {
+                        final WritableMap credentials = Arguments.createMap();
+                        credentials.putString(ACCESS_KEY, cred.getAWSAccessKeyId());
+                        credentials.putString(SESSION_KEY, cred.getSessionToken());
+                        credentials.putString(SECRET_KEY, cred.getAWSSecretKey());
+                        credentials.putString(EXPIRATION, credentialsProvider.getSessionCredentitalsExpiration().toString());
+                        return credentials;
+                    }
+                    else {
+                        // TODO: throw exception instead?
+                        return null;
+                    }
+                }
+            },
+            PROMISE_REJECTOR,
+            promise
+        );
     }
 
     @ReactMethod
@@ -194,4 +209,18 @@ public class AWSRNCognitoCredentials extends ReactContextBaseJavaModule {
                 return key;
         }
     }
+
+    private static final BackgroundRunner.PromiseRejector PROMISE_REJECTOR = new BackgroundRunner.PromiseRejector() {
+        @Override
+        public void reject(Exception e, Promise promise) {
+            if(e instanceof AmazonServiceException) {
+                AmazonServiceException ase = (AmazonServiceException)e;
+                promise.reject(ase.getErrorCode(), ase.getErrorMessage(), e);
+            }
+            else {
+                promise.reject("", e.getMessage(), e);
+            }
+        }
+    };
+
 }
