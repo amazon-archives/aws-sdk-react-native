@@ -14,11 +14,15 @@
 //
 #import "AWSRNCognitoCredentials.h"
 
+@interface AWSRNCognitoCredentials()
+    @property (nonatomic, readonly) NSDateFormatter *dateFormatterISO8601;
+@end
+
 @implementation AWSRNCognitoCredentials{
     NSMutableDictionary *options;
     AWSCognitoCredentialsProvider *credentialProvider;
     AWSRNHelper *helper;
-    NSDateFormatter* _dateFormatterISO8601;
+    NSDateFormatter *_dateFormatterISO8601;
 }
 
 @synthesize bridge = _bridge;
