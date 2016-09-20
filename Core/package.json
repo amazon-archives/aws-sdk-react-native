@@ -1,6 +1,6 @@
 {
   "name": "aws-sdk-react-native-core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A React Native wrapper for AWS SDK for Cognito Identity",
   "main": "./src/index.js",
   "files": [
