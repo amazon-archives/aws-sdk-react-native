@@ -18,10 +18,12 @@
     NSMutableDictionary *options;
     AWSCognitoCredentialsProvider *credentialProvider;
     AWSRNHelper *helper;
+    NSDateFormatter* _dateFormatterISO8601;
 }
 
 @synthesize bridge = _bridge;
 @synthesize methodQueue = _methodQueue;
+//@synthesize methodQueue = _methodQueue;
 
 typedef void (^ Block)(id, int);
 
@@ -56,6 +58,16 @@ RCT_EXPORT_METHOD(clear){
     [credentialProvider clearKeychain];
 }
 
+-(NSDateFormatter*) dateFormatterISO8601 {
+    if(! _dateFormatterISO8601){
+        _dateFormatterISO8601 = [[NSDateFormatter alloc] init];
+        [_dateFormatterISO8601 setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+        [_dateFormatterISO8601 setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    }
+    return _dateFormatterISO8601;
+}
+
+
 RCT_EXPORT_METHOD(getCredentialsAsync:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject){
 
     //start a separate thread for this to avoid blocking the component queue, since
@@ -79,7 +91,17 @@ RCT_EXPORT_METHOD(getCredentialsAsync:(RCTPromiseResolveBlock)resolve rejecter:(
             }
             else {
                 AWSCredentials *cred = (AWSCredentials*) task.result;
-                NSDictionary *dict = @{@"AccessKey":cred.accessKey,@"SecretKey":cred.secretKey,@"SessionKey":cred.sessionKey,@"Expiration":cred.expiration};
+
+                //using ISO 8601 to transport the dates over the wire.
+                //easier to debug then passing the data as a number
+                //javascript new Date(dateAsString) function takes an ISO 8601 string :)
+                NSString* dateAsISO8601String = [self.dateFormatterISO8601 stringFromDate:cred.expiration];
+
+                NSDictionary *dict = @{
+                                       @"AccessKey":cred.accessKey,
+                                       @"SecretKey":cred.secretKey,
+                                       @"SessionKey":cred.sessionKey,
+                                       @"Expiration":dateAsISO8601String};
                 resolve(dict);
             }
             return nil;
