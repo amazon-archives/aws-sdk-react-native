@@ -45,11 +45,9 @@ export default class AWSCognitoCredentials{
 
     //set up delegate for IdentityProvider
     if (Platform.OS === 'ios'){
-      listener.addListener("LoginsRequestedEvent", async event => {
-        //FIX: can't pass a callback in the event like this.
-        //event.ReturnInfo([this.getLogins()]);
-        const {callbackId} = event;
-        cognitoClient.sendCallbackResponse(callbackId, [this.getLogins()]);
+      listener.addListener("LoginsRequestedEvent", async {callbackId} => {
+        const logins = [await Promise.resolve(this.getLogins())];
+        cognitoClient.sendCallbackResponse(callbackId, logins);
       });
     }
     //Set up Notifications for Identity Changes
