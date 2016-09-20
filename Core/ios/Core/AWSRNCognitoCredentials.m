@@ -125,7 +125,7 @@ RCT_EXPORT_METHOD(getIdentityIDAsync:(RCTPromiseResolveBlock)resolve rejecter:(R
             reject([NSString stringWithFormat:@"%ld",task.error.code],task.error.description,task.error);
         }
         else {
-            resolve(@{@"identityid":task.result});
+            resolve(@{@"identityId":task.result});
         }
         return nil;
     }];
