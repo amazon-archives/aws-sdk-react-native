@@ -42,10 +42,12 @@ export default class AWSCognitoCredentials{
     this.RNC_AMAZON_PROVIDER = "AmazonProvider"
     this.RNC_TWITTER_PROVIDER = "TwitterProvider"
     this.RNC_COGNITO_PROVIDER = "CognitoProvider"
+
     //set up delegate for IdentityProvider
     if (Platform.OS === 'ios'){
-      listener.addListener("LoginsRequestedEvent", async event => {
-        event.ReturnInfo([this.getLogins()]);
+      listener.addListener("LoginsRequestedEvent", async {callbackId} => {
+        const logins = [await Promise.resolve(this.getLogins())];
+        cognitoClient.sendCallbackResponse(callbackId, logins);
       });
     }
     //Set up Notifications for Identity Changes

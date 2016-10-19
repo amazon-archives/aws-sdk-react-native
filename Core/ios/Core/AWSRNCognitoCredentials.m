@@ -14,14 +14,20 @@
 //
 #import "AWSRNCognitoCredentials.h"
 
+@interface AWSRNCognitoCredentials()
+    @property (nonatomic, readonly) NSDateFormatter *dateFormatterISO8601;
+@end
+
 @implementation AWSRNCognitoCredentials{
     NSMutableDictionary *options;
     AWSCognitoCredentialsProvider *credentialProvider;
-    NSLock* lock;
     AWSRNHelper *helper;
+    NSDateFormatter *_dateFormatterISO8601;
 }
 
 @synthesize bridge = _bridge;
+@synthesize methodQueue = _methodQueue;
+//@synthesize methodQueue = _methodQueue;
 
 typedef void (^ Block)(id, int);
 
@@ -32,6 +38,8 @@ const NSString *SECRET_KEY = @"secret_key";
 const NSString *SESSION_TOKEN = @"session_token";
 const NSString *EXPIRATION = @"expiration";
 const NSString *IDENTITY_ID = @"identity_id";
+
+static NSMutableDictionary* callbacks;
 
 RCT_EXPORT_MODULE(AWSRNCognitoCredentials)
 
@@ -54,23 +62,56 @@ RCT_EXPORT_METHOD(clear){
     [credentialProvider clearKeychain];
 }
 
+-(NSDateFormatter*) dateFormatterISO8601 {
+    if(! _dateFormatterISO8601){
+        _dateFormatterISO8601 = [[NSDateFormatter alloc] init];
+        [_dateFormatterISO8601 setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"]];
+        [_dateFormatterISO8601 setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    }
+    return _dateFormatterISO8601;
+}
+
+
 RCT_EXPORT_METHOD(getCredentialsAsync:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject){
-    [[credentialProvider credentials] continueWithBlock:^id(AWSTask *task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw [NSException exceptionWithName:task.exception.name reason:task.exception.reason userInfo:task.exception.userInfo];
-            });
-        }
-        if (task.error) {
-            reject([NSString stringWithFormat:@"%ld",task.error.code],task.error.description,task.error);
-        }
-        else {
-            AWSCredentials *cred = (AWSCredentials*) task.result;
-            NSDictionary *dict = @{@"AccessKey":cred.accessKey,@"SecretKey":cred.secretKey,@"SessionKey":cred.sessionKey,@"Expiration":cred.expiration};
-            resolve(dict);
-        }
-        return nil;
-    }];
+
+    //start a separate thread for this to avoid blocking the component queue, since
+    //it will have to comunicate with the javascript in the mean time while trying to get the list of logins
+
+    NSString* queueName = [NSString stringWithFormat:@"%@.getCredentialsAsyncQueue",
+                           [NSString stringWithUTF8String:dispatch_queue_get_label(self.methodQueue)]
+                           ];
+    dispatch_queue_t concurrentQueue = dispatch_queue_create([queueName UTF8String], DISPATCH_QUEUE_CONCURRENT);
+
+    dispatch_async(concurrentQueue, ^{
+
+        [[credentialProvider credentials] continueWithBlock:^id(AWSTask *task) {
+            if (task.exception){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    @throw [NSException exceptionWithName:task.exception.name reason:task.exception.reason userInfo:task.exception.userInfo];
+                });
+            }
+            if (task.error) {
+                reject([NSString stringWithFormat:@"%ld",task.error.code],task.error.description,task.error);
+            }
+            else {
+                AWSCredentials *cred = (AWSCredentials*) task.result;
+
+                //using ISO 8601 to transport the dates over the wire.
+                //easier to debug then passing the data as a number
+                //javascript new Date(dateAsString) function takes an ISO 8601 string :)
+                NSString* dateAsISO8601String = [self.dateFormatterISO8601 stringFromDate:cred.expiration];
+
+                NSDictionary *dict = @{
+                                       @"AccessKey":cred.accessKey,
+                                       @"SecretKey":cred.secretKey,
+                                       @"SessionKey":cred.sessionKey,
+                                       @"Expiration":dateAsISO8601String};
+                resolve(dict);
+            }
+            return nil;
+        }];
+
+    });
 }
 
 RCT_EXPORT_METHOD(getIdentityIDAsync:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject){
@@ -84,7 +125,7 @@ RCT_EXPORT_METHOD(getIdentityIDAsync:(RCTPromiseResolveBlock)resolve rejecter:(R
             reject([NSString stringWithFormat:@"%ld",task.error.code],task.error.description,task.error);
         }
         else {
-            resolve(@{@"identityid":task.result});
+            resolve(@{@"identityId":task.result});
         }
         return nil;
     }];
@@ -115,17 +156,17 @@ RCT_EXPORT_METHOD(initWithOptions:(NSDictionary *)inputOptions)
 #pragma mark - AWSIdentityProviderManager
 
 - (AWSTask<NSDictionary<NSString *, NSString *> *> *)logins{
-    if (!lock){
-        lock = [[NSLock alloc]init];
-    }
     return [[AWSTask taskWithResult:nil] continueWithSuccessBlock:^id _Nullable(AWSTask * _Nonnull task) {
         __block NSArray* arr;
-        [self sendMessage:[[NSMutableDictionary alloc]init] toChannel:@"LoginsRequestedEvent" withCallback:^(NSArray* response){
+
+        dispatch_semaphore_t sendMessageSemaphore = dispatch_semaphore_create(0);
+
+        [self sendMessage:[[NSMutableDictionary alloc]init] toChannel:@"LoginsRequestedEvent" semaphore:sendMessageSemaphore withCallback:^(NSArray* response) {
             arr = response;
-            [lock unlock];
         }];
-        [lock lock];
-        [lock unlock];
+
+        dispatch_semaphore_wait(sendMessageSemaphore, DISPATCH_TIME_FOREVER);
+
         if (![[arr objectAtIndex:0]isKindOfClass:[NSDictionary class]]){
             return [[NSDictionary alloc]init];
         }
@@ -143,18 +184,48 @@ RCT_EXPORT_METHOD(initWithOptions:(NSDictionary *)inputOptions)
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     [dict setValue:[notification.userInfo valueForKey:AWSCognitoNotificationPreviousId] forKey:@"Previous"];
     [dict setValue:[notification.userInfo valueForKey:AWSCognitoNotificationNewId] forKey:@"Current"];
-    [self sendMessage:dict toChannel:@"IdentityChange" withCallback:nil];
+    [self sendMessage:dict toChannel:@"IdentityChange"];
 }
 
--(void)sendMessage:(NSMutableDictionary*)info toChannel:(NSString*)channel withCallback:(RCTResponseSenderBlock)callback{
-    if ([channel isEqualToString:@"LoginsRequestedEvent"]){
-        [lock lock];
-        [info setValue:callback forKey:@"ReturnInfo"];
+
+RCT_EXPORT_METHOD(sendCallbackResponse:(NSString *)callbackId response:(NSArray *)response){
+    NSDictionary* callbackInfo = [callbacks objectForKey:callbackId];
+    if(callbackInfo) {
+        RCTResponseSenderBlock callback = callbackInfo[@"callback"];
+        dispatch_semaphore_t semaphore = callbackInfo[@"semaphore"];
+        [callbacks removeObjectForKey:callbackId];
+
+        callback(response);
+        dispatch_semaphore_signal(semaphore);
     }
+    else{
+        NSLog(@"WARN callback id not found!");
+    }
+}
+
+-(NSString*) registerCallBack:(RCTResponseSenderBlock)callback semaphore:(dispatch_semaphore_t)semaphore {
+    if (!callbacks){
+        callbacks = [@{} mutableCopy];
+    }
+    NSString* callbackId = [[NSUUID UUID] UUIDString];
+    callbacks[callbackId] = @{
+                              @"callback": callback ? callback : (^(NSArray *response) { }),
+                              @"semaphore":semaphore
+                              };
+    return callbackId;
+}
+
+-(void)sendMessage:(NSMutableDictionary*)info toChannel:(NSString*)channel{
     [self.bridge.eventDispatcher
      sendAppEventWithName:channel
      body:[info copy]
      ];
+}
+
+-(void)sendMessage:(NSMutableDictionary*)info toChannel:(NSString*)channel semaphore:(dispatch_semaphore_t)semaphore withCallback:(RCTResponseSenderBlock)callback  {
+    NSString * callbackId = [self registerCallBack:callback semaphore:semaphore];
+    [info setValue:callbackId forKey:@"callbackId"];
+    [self sendMessage:info toChannel:channel];
 }
 
 -(NSMutableDictionary*)setLogins:(NSMutableDictionary*)reactLogins{
@@ -185,8 +256,5 @@ RCT_EXPORT_METHOD(initWithOptions:(NSDictionary *)inputOptions)
     }
     return logins;
 }
-
-
-
 
 @end
