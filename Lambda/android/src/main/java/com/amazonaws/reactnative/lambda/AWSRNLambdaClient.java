@@ -18,6 +18,8 @@ package com.amazonaws.reactnative.lambda;
 import com.amazonaws.reactnative.core.AWSRNClientConfiguration;
 import com.amazonaws.reactnative.core.AWSRNClientMarshaller;
 import com.amazonaws.reactnative.core.AWSRNCognitoCredentials;
+import com.amazonaws.reactnative.core.BackgroundRunner;
+import com.amazonaws.reactnative.core.BackgroundRunner.Supplier;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.lambda.*;
@@ -36,11 +38,12 @@ import org.json.JSONObject;
 
 import java.nio.ByteBuffer;
 
-
 public class AWSRNLambdaClient extends ReactContextBaseJavaModule {
 
     private AWSLambdaClient lambdaClient;
     private Gson gson;
+
+    private final BackgroundRunner backgroundRunner = new BackgroundRunner();
 
     public AWSRNLambdaClient(final ReactApplicationContext context) {
         super(context);
@@ -67,15 +70,20 @@ public class AWSRNLambdaClient extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void Invoke(final ReadableMap options, final Promise promise) {
-        try {
-            final InvokeRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), InvokeRequest.class);
-            final InvokeResult response = lambdaClient.invoke(request);
-            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
-            promise.resolve(map);
-        } catch (Exception e) {
-            promise.reject(e);
-            return;
-        }
+        backgroundRunner.runInBackground(
+            new Supplier<WritableMap>() {
+                @Override
+                public WritableMap get() throws Exception {
+                    final InvokeRequest request = gson.fromJson(
+                        new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(),
+                        InvokeRequest.class
+                    );
+                    final InvokeResult response = lambdaClient.invoke(request);
+                    return AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+                }
+            },
+            promise
+        );
     }
 
 }
