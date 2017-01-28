@@ -54,16 +54,103 @@ public class AWSRNRekognitionClient extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void initWithOptions(final ReadableMap options) {
-        if (!options.hasKey("region")) {
-            throw new IllegalArgumentException("expected region key");
-        }
         final AWSRNCognitoCredentials credentials = this.getReactApplicationContext().getNativeModule(AWSRNCognitoCredentials.class);
         if (credentials.getCredentialsProvider() == null) {
             throw new IllegalArgumentException("AWSCognitoCredentials is not initialized");
         }
         gson = new GsonBuilder().setFieldNamingStrategy(FieldNamingPolicy.UPPER_CAMEL_CASE).registerTypeAdapter(ByteBuffer.class, AWSRNClientMarshaller.getSerializer()).registerTypeAdapter(ByteBuffer.class, AWSRNClientMarshaller.getDeserializer()).create();
         rekognitionClient = new AmazonRekognitionClient(credentials.getCredentialsProvider(), new AWSRNClientConfiguration().withUserAgent("Rekognition"));
-        rekognitionClient.setRegion(Region.getRegion(Regions.fromName(options.getString("region"))));
+    }
+
+    @ReactMethod
+    public void CompareFaces(final ReadableMap options, final Promise promise) {
+        try {
+            final CompareFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), CompareFacesRequest.class);
+            final CompareFacesResult response = rekognitionClient.compareFaces(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void CreateCollection(final ReadableMap options, final Promise promise) {
+        try {
+            final CreateCollectionRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), CreateCollectionRequest.class);
+            final CreateCollectionResult response = rekognitionClient.createCollection(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void DeleteCollection(final ReadableMap options, final Promise promise) {
+        try {
+            final DeleteCollectionRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), DeleteCollectionRequest.class);
+            final DeleteCollectionResult response = rekognitionClient.deleteCollection(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void DeleteFaces(final ReadableMap options, final Promise promise) {
+        try {
+            final DeleteFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), DeleteFacesRequest.class);
+            final DeleteFacesResult response = rekognitionClient.deleteFaces(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void DetectFaces(final ReadableMap options, final Promise promise) {
+        try {
+            final DetectFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), DetectFacesRequest.class);
+            final DetectFacesResult response = rekognitionClient.detectFaces(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void DetectLabels(final ReadableMap options, final Promise promise) {
+        try {
+            final DetectLabelsRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), DetectLabelsRequest.class);
+            final DetectLabelsResult response = rekognitionClient.detectLabels(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void IndexFaces(final ReadableMap options, final Promise promise) {
+        try {
+            final IndexFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), IndexFacesRequest.class);
+            final IndexFacesResult response = rekognitionClient.indexFaces(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
     }
 
     @ReactMethod
@@ -71,6 +158,45 @@ public class AWSRNRekognitionClient extends ReactContextBaseJavaModule {
         try {
             final ListCollectionsRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), ListCollectionsRequest.class);
             final ListCollectionsResult response = rekognitionClient.listCollections(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void ListFaces(final ReadableMap options, final Promise promise) {
+        try {
+            final ListFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), ListFacesRequest.class);
+            final ListFacesResult response = rekognitionClient.listFaces(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void SearchFaces(final ReadableMap options, final Promise promise) {
+        try {
+            final SearchFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), SearchFacesRequest.class);
+            final SearchFacesResult response = rekognitionClient.searchFaces(request);
+            final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
+            promise.resolve(map);
+        } catch (Exception e) {
+            promise.reject(e);
+            return;
+        }
+    }
+
+    @ReactMethod
+    public void SearchFacesByImage(final ReadableMap options, final Promise promise) {
+        try {
+            final SearchFacesByImageRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), SearchFacesByImageRequest.class);
+            final SearchFacesByImageResult response = rekognitionClient.searchFacesByImage(request);
             final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
             promise.resolve(map);
         } catch (Exception e) {
