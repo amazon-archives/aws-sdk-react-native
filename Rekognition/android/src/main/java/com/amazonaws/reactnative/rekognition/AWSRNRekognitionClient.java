@@ -15,6 +15,8 @@
 
 package com.amazonaws.reactnative.rekognition;
 
+import android.util.Log;
+
 import com.amazonaws.reactnative.core.AWSRNClientConfiguration;
 import com.amazonaws.reactnative.core.AWSRNClientMarshaller;
 import com.amazonaws.reactnative.core.AWSRNCognitoCredentials;
@@ -35,8 +37,13 @@ import com.google.gson.GsonBuilder;
 
 import org.json.JSONObject;
 
-import java.nio.ByteBuffer;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
+import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+
+import java.nio.channels.FileChannel;
 
 public class AWSRNRekognitionClient extends ReactContextBaseJavaModule {
 
@@ -143,7 +150,19 @@ public class AWSRNRekognitionClient extends ReactContextBaseJavaModule {
     @ReactMethod
     public void IndexFaces(final ReadableMap options, final Promise promise) {
         try {
-            final IndexFacesRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), IndexFacesRequest.class);
+            final IndexFacesRequest request = new IndexFacesRequest();
+            request.setCollectionId(options.getString("CollectionId"));
+            try {
+              RandomAccessFile file = new RandomAccessFile(options.getString("File"), "r");
+              FileChannel inChannel = file.getChannel();
+              MappedByteBuffer buffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
+              final Image image = new Image();
+              image.withBytes(buffer);
+              request.setImage(image);
+            } catch(IOException e) {
+              Log.w(this.getClass().toString(), e.getMessage());
+            }
+
             final IndexFacesResult response = rekognitionClient.indexFaces(request);
             final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
             promise.resolve(map);
