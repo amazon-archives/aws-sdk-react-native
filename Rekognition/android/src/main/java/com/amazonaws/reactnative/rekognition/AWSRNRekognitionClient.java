@@ -153,7 +153,7 @@ public class AWSRNRekognitionClient extends ReactContextBaseJavaModule {
             final IndexFacesRequest request = new IndexFacesRequest();
             request.setCollectionId(options.getString("CollectionId"));
             try {
-              RandomAccessFile file = new RandomAccessFile(options.getString("File"), "r");
+              RandomAccessFile file = new RandomAccessFile(options.getString("Image"), "r");
               FileChannel inChannel = file.getChannel();
               MappedByteBuffer buffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
               final Image image = new Image();
@@ -214,7 +214,25 @@ public class AWSRNRekognitionClient extends ReactContextBaseJavaModule {
     @ReactMethod
     public void SearchFacesByImage(final ReadableMap options, final Promise promise) {
         try {
-            final SearchFacesByImageRequest request = gson.fromJson(new JSONObject(AWSRNClientMarshaller.readableMapToMap(options)).toString(), SearchFacesByImageRequest.class);
+            final SearchFacesByImageRequest request = new SearchFacesByImageRequest();
+            request.setCollectionId(options.getString("CollectionId"));
+            if (options.hasKey("MaxFaces")) {
+              request.setMaxFaces(options.getInt("MaxFaces"));
+            }
+            if (options.hasKey("FaceMatchThreshold")) {
+              request.setFaceMatchThreshold((float)options.getDouble("FaceMatchThreshold"));
+            }
+            try {
+              RandomAccessFile file = new RandomAccessFile(options.getString("Image"), "r");
+              FileChannel inChannel = file.getChannel();
+              MappedByteBuffer buffer = inChannel.map(FileChannel.MapMode.READ_ONLY, 0, inChannel.size());
+              final Image image = new Image();
+              image.withBytes(buffer);
+              request.setImage(image);
+            } catch(IOException e) {
+              Log.w(this.getClass().toString(), e.getMessage());
+            }
+
             final SearchFacesByImageResult response = rekognitionClient.searchFacesByImage(request);
             final WritableMap map = AWSRNClientMarshaller.jsonToReact(new JSONObject(gson.toJson(response)));
             promise.resolve(map);
