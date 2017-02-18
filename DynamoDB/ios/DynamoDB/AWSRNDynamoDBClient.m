@@ -49,11 +49,6 @@ RCT_EXPORT_METHOD(DeleteTable:(NSDictionary*)options resolver:(RCTPromiseResolve
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB deleteTable:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -76,11 +71,6 @@ RCT_EXPORT_METHOD(BatchGetItem:(NSDictionary*)options resolver:(RCTPromiseResolv
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB batchGetItem:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -103,11 +93,6 @@ RCT_EXPORT_METHOD(DescribeTable:(NSDictionary*)options resolver:(RCTPromiseResol
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB describeTable:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -130,11 +115,6 @@ RCT_EXPORT_METHOD(PutItem:(NSDictionary*)options resolver:(RCTPromiseResolveBloc
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB putItem:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -157,11 +137,6 @@ RCT_EXPORT_METHOD(Query:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB query:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -184,11 +159,6 @@ RCT_EXPORT_METHOD(Scan:(NSDictionary*)options resolver:(RCTPromiseResolveBlock)r
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB scan:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -211,11 +181,6 @@ RCT_EXPORT_METHOD(DeleteItem:(NSDictionary*)options resolver:(RCTPromiseResolveB
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB deleteItem:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -238,11 +203,6 @@ RCT_EXPORT_METHOD(UpdateItem:(NSDictionary*)options resolver:(RCTPromiseResolveB
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB updateItem:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -265,11 +225,6 @@ RCT_EXPORT_METHOD(CreateTable:(NSDictionary*)options resolver:(RCTPromiseResolve
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB createTable:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -292,11 +247,6 @@ RCT_EXPORT_METHOD(BatchWriteItem:(NSDictionary*)options resolver:(RCTPromiseReso
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB batchWriteItem:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -319,11 +269,6 @@ RCT_EXPORT_METHOD(GetItem:(NSDictionary*)options resolver:(RCTPromiseResolveBloc
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB getItem:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -346,11 +291,6 @@ RCT_EXPORT_METHOD(DescribeLimits:(NSDictionary*)options resolver:(RCTPromiseReso
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB describeLimits:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -373,11 +313,6 @@ RCT_EXPORT_METHOD(ListTables:(NSDictionary*)options resolver:(RCTPromiseResolveB
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB listTables:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -400,11 +335,6 @@ RCT_EXPORT_METHOD(UpdateTable:(NSDictionary*)options resolver:(RCTPromiseResolve
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.DynamoDB updateTable:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{

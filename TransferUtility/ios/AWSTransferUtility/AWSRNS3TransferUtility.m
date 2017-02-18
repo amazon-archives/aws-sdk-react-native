@@ -132,11 +132,6 @@ RCT_EXPORT_METHOD(download:(NSDictionary*)options resolver:(RCTPromiseResolveBlo
         if (task.error) {
             reject([NSString stringWithFormat: @"%ld", (long)task.error.code],task.error.description,task.error);
         }
-        if (task.exception) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw [NSException exceptionWithName:task.exception.name reason:task.exception.reason userInfo:task.exception.userInfo];
-            });
-        }
         if (task.result) {
             AWSS3TransferUtilityDownloadTask *downloadTask = (AWSS3TransferUtilityDownloadTask*)task.result;
             @synchronized (requestMap) {
@@ -228,11 +223,6 @@ RCT_EXPORT_METHOD(upload:(NSDictionary*)options resolver:(RCTPromiseResolveBlock
                 completionHander:[request objectForKey:@"completionhandler"]] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             reject([NSString stringWithFormat: @"%ld", (long)task.error.code],task.error.description,task.error);
-        }
-        if (task.exception) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw [NSException exceptionWithName:task.exception.name reason:task.exception.reason userInfo:task.exception.userInfo];
-            });
         }
         if (task.result) {
             AWSS3TransferUtilityUploadTask *uploadTask = (AWSS3TransferUtilityUploadTask*)task.result;

@@ -49,11 +49,6 @@ RCT_EXPORT_METHOD(ListSubscriptionsByTopic:(NSDictionary*)options resolver:(RCTP
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS listSubscriptionsByTopic:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -76,11 +71,6 @@ RCT_EXPORT_METHOD(Subscribe:(NSDictionary*)options resolver:(RCTPromiseResolveBl
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS subscribe:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -103,11 +93,6 @@ RCT_EXPORT_METHOD(GetTopicAttributes:(NSDictionary*)options resolver:(RCTPromise
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS getTopicAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -130,11 +115,6 @@ RCT_EXPORT_METHOD(AddPermission:(NSDictionary*)options resolver:(RCTPromiseResol
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS addPermission:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -157,11 +137,6 @@ RCT_EXPORT_METHOD(GetPlatformApplicationAttributes:(NSDictionary*)options resolv
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS getPlatformApplicationAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -184,11 +159,6 @@ RCT_EXPORT_METHOD(CreatePlatformEndpoint:(NSDictionary*)options resolver:(RCTPro
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS createPlatformEndpoint:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -211,11 +181,6 @@ RCT_EXPORT_METHOD(DeletePlatformApplication:(NSDictionary*)options resolver:(RCT
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS deletePlatformApplication:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -238,11 +203,6 @@ RCT_EXPORT_METHOD(Unsubscribe:(NSDictionary*)options resolver:(RCTPromiseResolve
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS unsubscribe:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -265,11 +225,6 @@ RCT_EXPORT_METHOD(SetSubscriptionAttributes:(NSDictionary*)options resolver:(RCT
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS setSubscriptionAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -292,11 +247,6 @@ RCT_EXPORT_METHOD(ListEndpointsByPlatformApplication:(NSDictionary*)options reso
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS listEndpointsByPlatformApplication:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -319,11 +269,6 @@ RCT_EXPORT_METHOD(ListSubscriptions:(NSDictionary*)options resolver:(RCTPromiseR
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS listSubscriptions:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -346,11 +291,6 @@ RCT_EXPORT_METHOD(SetTopicAttributes:(NSDictionary*)options resolver:(RCTPromise
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS setTopicAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -373,11 +313,6 @@ RCT_EXPORT_METHOD(GetEndpointAttributes:(NSDictionary*)options resolver:(RCTProm
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS getEndpointAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -400,11 +335,6 @@ RCT_EXPORT_METHOD(DeleteTopic:(NSDictionary*)options resolver:(RCTPromiseResolve
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS deleteTopic:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -427,11 +357,6 @@ RCT_EXPORT_METHOD(SetEndpointAttributes:(NSDictionary*)options resolver:(RCTProm
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS setEndpointAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -454,11 +379,6 @@ RCT_EXPORT_METHOD(CreatePlatformApplication:(NSDictionary*)options resolver:(RCT
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS createPlatformApplication:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -481,11 +401,6 @@ RCT_EXPORT_METHOD(CreateTopic:(NSDictionary*)options resolver:(RCTPromiseResolve
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS createTopic:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -508,11 +423,6 @@ RCT_EXPORT_METHOD(DeleteEndpoint:(NSDictionary*)options resolver:(RCTPromiseReso
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS deleteEndpoint:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -535,11 +445,6 @@ RCT_EXPORT_METHOD(GetSubscriptionAttributes:(NSDictionary*)options resolver:(RCT
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS getSubscriptionAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -562,11 +467,6 @@ RCT_EXPORT_METHOD(Publish:(NSDictionary*)options resolver:(RCTPromiseResolveBloc
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS publish:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -589,11 +489,6 @@ RCT_EXPORT_METHOD(ListTopics:(NSDictionary*)options resolver:(RCTPromiseResolveB
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS listTopics:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -616,11 +511,6 @@ RCT_EXPORT_METHOD(ConfirmSubscription:(NSDictionary*)options resolver:(RCTPromis
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS confirmSubscription:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -643,11 +533,6 @@ RCT_EXPORT_METHOD(RemovePermission:(NSDictionary*)options resolver:(RCTPromiseRe
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS removePermission:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -670,11 +555,6 @@ RCT_EXPORT_METHOD(SetPlatformApplicationAttributes:(NSDictionary*)options resolv
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS setPlatformApplicationAttributes:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
@@ -697,11 +577,6 @@ RCT_EXPORT_METHOD(ListPlatformApplications:(NSDictionary*)options resolver:(RCTP
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.SNS listPlatformApplications:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{
