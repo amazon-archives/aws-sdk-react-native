@@ -1,3 +1,7 @@
+Hi! This developer preview is currently under review and we will be looking to merge the contents in the future under a single repository for all AWS React Native functionality. In the meantime, we recommend you leverage the official [AWS JavaScript SDK with React Native support](https://github.com/aws/aws-sdk-js).
+
+---
+
 # AWS SDK for React Native
 
 We’re excited to offer a developer preview of the AWS SDK for React Native. The SDK includes support for the following services:
