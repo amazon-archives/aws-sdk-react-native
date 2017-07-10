@@ -4,7 +4,7 @@
 
 - Click the button below to import the project into Mobile Hub:
 
-<p align="center"><a target="_blank" href="https://console.aws.amazon.com/mobilehub/home?#/?config=https://github.com/awslabs/aws-sdk-react-native/tree/master/UserPools/mobile-hub-project.yml"><span><img height="100%" src="https://s3.amazonaws.com/deploytomh/button-deploy-aws-mh.png"/></span></a></p>
+<p align="center"><a target="_blank" href="https://console.aws.amazon.com/mobilehub/home?#/?config=https://github.com/awslabs/aws-sdk-react-native/blob/master/UserPools/mobile-hub-project.yml"><span><img height="100%" src="https://s3.amazonaws.com/deploytomh/button-deploy-aws-mh.png"/></span></a></p>
 
 - In the Mobile Hub console click the Hosting and Streaming tab and at the bottom of the page download the **aws-exports.js** file
 
