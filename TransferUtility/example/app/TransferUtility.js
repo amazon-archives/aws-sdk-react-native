@@ -35,16 +35,16 @@ var options = {
     path: 'images'
   }
 };
-var S3Region = "INSERTS3REGION"
-var CognitoRegion = "INSERTCOGNITOREGION"
-var identity_pool_id = "INSERTIDENTITYPOOLID"
-var BucketName = "INSERTBUCKET"
-var DownloadKeyName = "INSERTDOWNLOADKEY" //should be a file stored on your S3
-var UploadKeyName = "INSERTUPLOADKEY" //should be suffixed by jpg since the example uploads a picture from your photos
+const S3Region = "INSERTS3REGION"
+const CognitoRegion = "INSERTCOGNITOREGION"
+const identity_pool_id = "INSERTIDENTITYPOOLID"
+const BucketName = "INSERTBUCKET"
+const DownloadKeyName = "INSERTDOWNLOADKEY" //should be a file stored on your S3
+const UploadKeyName = "INSERTUPLOADKEY" //should be suffixed by jpg since the example uploads a picture from your photos
 
 import {AWSCognitoCredentials} from 'aws-sdk-react-native-core';
 import {AWSS3TransferUtility} from 'aws-sdk-react-native-transfer-utility';
-var requestTmp = {"isDownload":false,"id":''};
+let requestTmp = {"isDownload":false,"id":''};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -85,7 +85,7 @@ class TransferUtility extends Component{
     AWSS3TransferUtility.initWithOptions(options);
   }
   downloadObject(){
-    var path;
+    let path;
    if(Platform.OS==='android'){
      path = "/" + BucketName + "/" + DownloadKeyName;
    }else{
@@ -98,7 +98,7 @@ class TransferUtility extends Component{
         requestTmp = {isDownload:true,"id":value}
         async function download(){
           try{
-            var val = await AWSS3TransferUtility.download({"requestid":value});
+            const val = await AWSS3TransferUtility.download({"requestid":value});
           }catch(e){
             console.log("download failed: " + e)
           }
@@ -119,8 +119,7 @@ class TransferUtility extends Component{
         console.log('User tapped custom button: ', response.customButton);
       }
       else {
-        const source = {uri: response.uri, isStatic: true};
-        var path;
+        let path;
         if(Platform.OS === 'android'){
           path = response.path;
         }else{
@@ -133,7 +132,7 @@ class TransferUtility extends Component{
             requestTmp = {isDownload:false,"id":value}
             async function upload(){
               try{
-                var val = await AWSS3TransferUtility.upload({"requestid":value});
+                const val = await AWSS3TransferUtility.upload({"requestid":value});
               }catch(e){
                 console.log("upload failed: " + e)
               }
