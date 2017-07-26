@@ -49,11 +49,6 @@ RCT_EXPORT_METHOD(Invoke:(NSDictionary*)options resolver:(RCTPromiseResolveBlock
         @throw [NSException exceptionWithName:@"InvalidArgument" reason:error.localizedDescription userInfo:error.userInfo];
     }
     [[self.Lambda invoke:request] continueWithBlock:^id _Nullable(AWSTask * _Nonnull task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw task.exception;
-            });
-        }
         if(task.error){
             reject([NSString stringWithFormat:@"%ld",task.error.code], [NSString stringWithFormat:@"%@",task.error.userInfo], task.error);
         }else{

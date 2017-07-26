@@ -85,11 +85,6 @@ RCT_EXPORT_METHOD(getCredentialsAsync:(RCTPromiseResolveBlock)resolve rejecter:(
     dispatch_async(concurrentQueue, ^{
 
         [[credentialProvider credentials] continueWithBlock:^id(AWSTask *task) {
-            if (task.exception){
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    @throw [NSException exceptionWithName:task.exception.name reason:task.exception.reason userInfo:task.exception.userInfo];
-                });
-            }
             if (task.error) {
                 reject([NSString stringWithFormat:@"%ld",task.error.code],task.error.description,task.error);
             }
@@ -116,11 +111,6 @@ RCT_EXPORT_METHOD(getCredentialsAsync:(RCTPromiseResolveBlock)resolve rejecter:(
 
 RCT_EXPORT_METHOD(getIdentityIDAsync:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject){
     [[credentialProvider getIdentityId] continueWithBlock:^id(AWSTask *task) {
-        if (task.exception){
-            dispatch_async(dispatch_get_main_queue(), ^{
-                @throw [NSException exceptionWithName:task.exception.name reason:task.exception.reason userInfo:task.exception.userInfo];
-            });
-        }
         if (task.error) {
             reject([NSString stringWithFormat:@"%ld",task.error.code],task.error.description,task.error);
         }
