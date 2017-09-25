@@ -1,3 +1,17 @@
+Hi everyone, thank you for your interest in this project. We've released a new React Native starter kit at https://github.com/awslabs/aws-mobile-react-native-starter. This kit demonstrates a working React Native app with the following services:
+
+* Amazon Cognito User Pools
+* Amazon Cognito Federated Identities
+* Amazon API Gateway
+* AWS Lambda
+* Amazon DynamoDB
+* Amazon S3
+* AWS Mobile Hub
+
+Try it out and give us feedback.
+
+---
+
 Hi! This developer preview is currently under review and we will be looking to merge the contents in the future under a single repository for all AWS React Native functionality. In the meantime, we recommend you leverage the official [AWS JavaScript SDK with React Native support](https://github.com/aws/aws-sdk-js).
 
 -- AWS team (May 24, 2017)
