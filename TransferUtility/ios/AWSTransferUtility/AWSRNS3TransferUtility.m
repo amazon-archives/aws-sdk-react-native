@@ -128,7 +128,7 @@ RCT_EXPORT_METHOD(download:(NSDictionary*)options resolver:(RCTPromiseResolveBlo
                              bucket:[request objectForKey:@"bucket"]
                                 key:[request objectForKey:@"key"]
                          expression:[request objectForKey:@"expression"]
-                   completionHander:[request objectForKey:@"completionhandler"]] continueWithBlock:^id(AWSTask *task) {
+                   completionHandler:[request objectForKey:@"completionhandler"]] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             reject([NSString stringWithFormat: @"%ld", (long)task.error.code],task.error.description,task.error);
         }
@@ -220,7 +220,7 @@ RCT_EXPORT_METHOD(upload:(NSDictionary*)options resolver:(RCTPromiseResolveBlock
                              key:[request objectForKey:@"key"]
                      contentType:[request objectForKey:@"contenttype"]
                       expression:[request objectForKey:@"expression"]
-                completionHander:[request objectForKey:@"completionhandler"]] continueWithBlock:^id(AWSTask *task) {
+                completionHandler:[request objectForKey:@"completionhandler"]] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             reject([NSString stringWithFormat: @"%ld", (long)task.error.code],task.error.description,task.error);
         }
