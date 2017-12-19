@@ -15,7 +15,11 @@
 
 #import <Foundation/Foundation.h>
 #import <AWSCognitoIdentityProvider/AWSCognitoIdentityProvider.h>
-#import "RCTBridgeModule.h"
+#if __has_include(<React/RCTBridgeModule.h>)
+    #import <React/RCTBridgeModule.h>
+#else
+    #import "RCTBridgeModule.h"
+#endif
 #import "RCTLog.h"
 
 @interface Login : NSObject<AWSCognitoIdentityInteractiveAuthenticationDelegate, AWSCognitoIdentityPasswordAuthentication, RCTBridgeModule>
