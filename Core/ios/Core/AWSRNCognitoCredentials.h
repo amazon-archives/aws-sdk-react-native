@@ -17,7 +17,11 @@
 #import <AWSCore/AWSTask.h>
 
 #import "RCTEventDispatcher.h"
+#if __has_include(<React/RCTBridgeModule.h>)
+#import <React/RCTBridgeModule.h>
+#else
 #import "RCTBridgeModule.h"
+#endif
 #import "AWSRNHelper.h"
 
 @interface AWSRNCognitoCredentials : NSObject <RCTBridgeModule, AWSIdentityProviderManager>

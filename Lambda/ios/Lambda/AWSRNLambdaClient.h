@@ -16,7 +16,11 @@
 #import <AWSLambda/AWSLambda.h>
 
 #import "RCTEventDispatcher.h"
+#if __has_include(<React/RCTBridgeModule.h>)
+#import <React/RCTBridgeModule.h>
+#else
 #import "RCTBridgeModule.h"
+#endif
 
 @interface AWSRNLambdaClient : NSObject <RCTBridgeModule>
 

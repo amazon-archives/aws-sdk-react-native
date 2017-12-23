@@ -17,7 +17,11 @@
 #import <AWSS3/AWSS3.h>
 
 #import "RCTEventDispatcher.h"
+#if __has_include(<React/RCTBridgeModule.h>)
+#import <React/RCTBridgeModule.h>
+#else
 #import "RCTBridgeModule.h"
+#endif
 #import "AWSRNHelper.h"
 
 @interface AWSRNS3TransferUtility : NSObject <RCTBridgeModule>
